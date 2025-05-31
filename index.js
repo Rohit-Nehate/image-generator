@@ -2,7 +2,7 @@
 const promptinp = document.querySelector('.promptinp')
 const promptt = promptinp.value
 const generate = document.querySelector('.gen')
-const img = document.querySelector('.image')
+
 const loaderContainer= document.querySelector('.loader-container') 
 const imageContainer= document.querySelector('.image-container') 
 const bar = document.querySelector('.progress-bar')
@@ -31,7 +31,7 @@ newloaderContainer.innerHTML=`
         </div>
          </div>
 `
-
+const img = document.querySelector('.image')
  img.src=url
 
 }

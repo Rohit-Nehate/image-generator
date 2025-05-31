@@ -3,20 +3,26 @@ const promptinp = document.querySelector('.promptinp')
 const promptt = promptinp.value
 const generate = document.querySelector('.gen')
 const img = document.querySelector('.image')
-const imageContainer= document.querySelector('.loader-container') 
+const loaderContainer= document.querySelector('.loader-container') 
+const imageContainer= document.querySelector('.image-container') 
 const bar = document.querySelector('.progress-bar')
 
 generate.addEventListener('click', async ()=>{
-const url = await `https://botfather.cloud/Apis/ImgGen/client.php?inputText=${encodeURIComponent(promptinp.value)}`
+const url =  `https://botfather.cloud/Apis/ImgGen/client.php?inputText=${encodeURIComponent(promptinp.value)}`
 console.log(url)
 
 console.log(promptinp.value.replace(/\s/g, ''))
 
 if(promptinp.value.replace(/\s/g,'')==''){
-    imageContainer.innerText= 'please enter a prompt'
+   loaderContainer.innerText= 'please enter a prompt'
 }
 else{
-imageContainer.innerHTML=`
+
+    imageContainer.innerHTML=`<div class="loader-container"></div>
+  <img class="image" src='${url}' alt="">`
+
+  const newloaderContainer= document.querySelector('.loader-container') 
+newloaderContainer.innerHTML=`
 <div class="progress">
     <div class="progress-container">
         <p class="text">LOADING...</p>
@@ -26,7 +32,7 @@ imageContainer.innerHTML=`
          </div>
 `
 
-    img.src = url
+ img.src=url
 
 }
 

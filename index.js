@@ -63,7 +63,7 @@ generate.addEventListener('click', async () => {
                     </div>
                 `;
             }
-        }, 3000);
+        }, 10000);
         
         // Load the image
         img.onload = () => {
@@ -117,3 +117,4 @@ generate.addEventListener('click', async () => {
         });
     }
 });
+

@@ -1,232 +1,347 @@
- *{
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-
-    body{
-        background-color: #252529;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-overflow:hidden;
-    }
-.progress-container{
-
-background-color: azure;
-width: 300px;
-height: 30px;
-border-radius: 10px    ;
-text-align: center;
-overflow: hidden;
-position: relative;
-display: flex;
-align-items: center;
-justify-content: center;
-animation: blink 1s infinite backwards;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
-.progress-bar{
-
-background: linear-gradient(45deg,#93ff63,#0f4515,#90d274);
-width: 0;
-height: 30px;
-position: absolute;
-left: 0;
-animation: progress 8s linear forwards;
-
-
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    overflow: hidden;
+    min-height: 100vh;
 }
 
-@keyframes blink{
-  0%{
-    opacity: 1;
-  }
-  50%{
-    opacity: .5;
-  }
-  100%{
-    opacity: 1;
-  }
+/* Shimmer Effect */
+.shimmer-wrapper {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 5;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    overflow: hidden;
 }
 
-@keyframes progress {
-    0%{
-        width: 0;
-         background-position: 0px;
+.shimmer {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.05) 20%,
+        rgba(255, 255, 255, 0.15) 40%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.15) 60%,
+        rgba(255, 255, 255, 0.05) 80%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmerAnimation 2s ease-in-out infinite;
+}
+
+@keyframes shimmerAnimation {
+    0% {
+        background-position: -200% 0;
     }
-    75%{
-        width: 100%;
-         background-position: 0px;
-    }
-    100%{
-        background-position: -100px;
-          width: 300%;
+    100% {
+        background-position: 200% 0;
     }
 }
 
-
-.text{
-    
-z-index: 99;
-left: 50%;
-
+.main {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
 }
 
-.main{
-    width: 100dvw;
-    height: 100dvh;
-display: flex;
-align-items: center;
-justify-content: center;
-
-}
-
-.image-gen{
-    width: 50%;
-    height: 90%;
-    background: #5f5f5f;
+.image-gen {
+    width: 100%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 30px;
-    border-radius: 10px;
+    gap: 24px;
+    border-radius: 24px;
+    padding: 40px 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-.image-container{
-   
-    width: 400px;
-    height: 400px;
-      position: relative;
+.name {
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-align: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.promptinp {
+    padding: 16px 20px;
+    width: 100%;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.08);
+    outline: none;
+    border: 2px solid rgba(138, 43, 226, 0.5);
+    color: #ffffff;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(138, 43, 226, 0.2);
+}
+
+.promptinp::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.promptinp:focus {
+    border-color: #8a2be2;
+    box-shadow: 0 4px 30px rgba(138, 43, 226, 0.4);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.gen {
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+    box-sizing: border-box;
+    color: #ffffff;
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1em;
+    min-width: 160px;
+    padding: 16px 32px;
+    text-decoration: none;
+    user-select: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.gen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.gen:hover::before {
+    left: 100%;
+}
+
+.gen:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.6);
+}
+
+.gen:active {
+    transform: translateY(0);
+}
+
+.image-container {
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #4f7eb5;
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
+    border-radius: 16px;
     overflow: hidden;
-
-    box-shadow: rgb(150, 218, 225) 2px 2px 60px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 }
 
-
-.loader-container{
+.loader-container {
     width: 100%;
     height: 100%;
-
     display: flex;
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: 0;
-    color: rgb(33, 235, 127);
+    z-index: 1;
+    flex-direction: column;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 600;
 }
 
-.image{
-    z-index: 999;
-    width: 400px;
+.progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
-.promptinp{
-
-padding: 6px 10px;
-width: 80%;
-height: 50px;
-font-size: 1rem;
-
-background-color: #d300c5;
-outline: none;
-border: none;
-color: rgb(255, 255, 255);
-border-radius: 10px;
-
-border: 2px solid beige;
-box-shadow: #9d06a2 1px 1px 30px;
+.progress-container {
+    background: rgba(255, 255, 255, 0.1);
+    width: 300px;
+    height: 8px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.promptinp::placeholder{
-    color:white;
-}
-  
-.gen {
-  align-items: center;
-  background-image: linear-gradient(144deg, #af40ff, #5b42f3 50%, #00ddeb);
-  border: 0;
-  border-radius: 8px;
-  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
-  box-sizing: border-box;
-  color: #ffffff;
-  display: flex;
-  font-size: 18px;
-  justify-content: center;
-  line-height: 1em;
-  max-width: 100%;
-  min-width: 140px;
-  padding: 3px;
-  text-decoration: none;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: all 0.3s;
+.progress-bar {
+    background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 200% 100%;
+    width: 0;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    animation: progress 8s ease-in-out forwards, shimmer 2s linear infinite;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.6);
 }
 
-.gen:active,
-.gen:hover {
-  outline: 0;
+@keyframes progress {
+    0% { width: 0%; }
+    100% { width: 100%; }
 }
 
-.gen span {
-  background-color: rgb(5, 6, 45);
-  padding: 16px 24px;
-  border-radius: 6px;
-  width: 100%;
-  height: 100%;
-  transition: 300ms;
+@keyframes shimmer {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 200% 0%; }
 }
 
-.gen:hover span {
-  background: none;
+.text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 2;
 }
 
-.gen:active {
-  transform: scale(0.9);
-}
-
-
-.name{
-    color:white;
-}
-
-
-@media (max-width:600px) {
- 
-.image-gen{
+.image {
+    z-index: 10;
     width: 100%;
     height: 100%;
-    background: transparent;
-    padding: 20px 20px;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
-
-.name{
-    font-size: 1.6rem;;
+.image.loaded {
+    opacity: 1;
 }
 
-.promptinp{
-    width: 90%;
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(255, 255, 255, 0.1);
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
 }
 
-.image-container{
-    width: 300px;
-    height: 300px;
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
-.progress-container{
-    width: 250px;
+/* Tablet */
+@media (max-width: 768px) {
+    .image-gen {
+        max-width: 500px;
+        padding: 30px 25px;
+        gap: 20px;
+    }
+
+    .name {
+        font-size: 1.75rem;
+    }
+
+    .image-container {
+        max-width: 380px;
+    }
+
+    .progress-container {
+        width: 250px;
+    }
 }
 
-.image{
-    width: 300px;
+/* Mobile */
+@media (max-width: 480px) {
+    .main {
+        padding: 15px;
+    }
+
+    .image-gen {
+        padding: 25px 20px;
+        gap: 18px;
+        border-radius: 20px;
+    }
+
+    .name {
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+    }
+
+    .promptinp {
+        padding: 14px 16px;
+        font-size: 0.95rem;
+    }
+
+    .gen {
+        font-size: 15px;
+        padding: 14px 28px;
+        min-width: 140px;
+    }
+
+    .image-container {
+        max-width: 300px;
+    }
+
+    .progress-container {
+        width: 90%;
+        max-width: 250px;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+    }
 }
 
+/* Small mobile */
+@media (max-width: 360px) {
+    .name {
+        font-size: 1.3rem;
+    }
+
+    .image-container {
+        max-width: 260px;
+    }
+
+    .gen {
+        font-size: 14px;
+        padding: 12px 24px;
+    }
+
+    .progress-container {
+        width: 220px;
+    }
 }
